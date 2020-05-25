@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="text-right mb-3">
+
+    <button  mat-raised-button aria-label="add icon" (click)="addBoard()" class="mr-3" color="warn">
+      <mat-icon >note_add</mat-icon>
+    </button>
+
+  </div>
+
+
+
+<div cdkDropListGroup id="cdkDropListGroup">
+  <div class="example-container"  *ngFor="let title of boardTitles">
+    <h2 class="title">{{title | uppercase}} <mat-icon (click)="removeBoard(title)"
+     class="remover mr-3 mt-1">delete_outline</mat-icon></h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="boardColumns[title]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of boardColumns[title]" cdkDrag> {{item}}
+        <mat-icon (click)="removeColumn(boardColumns[title], item)" class="remover">clear</mat-icon>
+      </div>
+
+      <div class="text-center">
+        <button mat-raised-button color="primary" (click)="addItem(boardColumns[title])"> Add item</button>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</div>
+</div>
